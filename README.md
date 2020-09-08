@@ -9,4 +9,5 @@ Usage: `python3 dirhunter.py <url> <wordlist>`
 
 Install: `git clone https://github.com/5skr0ll3r/DirHunter`
 
+Or just copy the code
 

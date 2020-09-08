@@ -15,7 +15,7 @@ def main():
     art()
     lch = requests.get(url)
     print('Url: ', url)
-    print('WrL: ', wordlist)
+    print('WrL: ', wordlist, '\n')
     if str(lch.status_code) == '200':
         if os.path.exists(wordlist):
             with open(wordlist) as wl:

@@ -8,6 +8,7 @@ from termcolor import colored
 
 
 def main():
+    codes = ['100','101','102','103','200','201','202','203','204','205','206','207','226','300','301','302','403']
     url = sys.argv[1]
     wordlist = sys.argv[2]
     exten = ('.html','.css','.js','.txt','.php','/')
@@ -24,7 +25,7 @@ def main():
                             a = url + i.rstrip('\n') + x
                             r = requests.get(a)
                             status = str(r.status_code)
-                            if status == '200' or status == '304':
+                            if status in codes:
                                 arrow(a, r, status)
                                 print('\n')        
         else:

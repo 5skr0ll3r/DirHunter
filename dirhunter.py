@@ -43,7 +43,7 @@ def art():
  #  #  # # #   #   #   #   #   #    #  #    #    #      # #
  # #   # #  #  #   #    # #    #     # #    #    #      #  #
  ##    # #   # #   #     #     #      #     #    ###### #   #"""
-    print (colored(ar.replace(' ', '-'), 'yellow' ))
+    print (colored(ar.replace(' ', '_'), 'yellow' ))
     
 def arrow(ab, bb, bc):
 

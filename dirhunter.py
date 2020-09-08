@@ -26,7 +26,7 @@ def main():
                             r = requests.get(a)
                             status = str(r.status_code)
                             if status in codes:
-                                arrow(a, r, status)
+                                arrow(a, status) # r
                                 print('\n')        
         else:
             print("File Does Not Exist")
@@ -46,9 +46,9 @@ def art():
  ##    # #   # #   #     #     #      #     #    ###### #   #"""
     print (colored(ar.replace(' ', '_'), 'yellow' ))
     
-def arrow(ab, bb, bc):
+def arrow(ab, bb):
 
-    print(colored("-->", 'red'), ab, bb, bc, end="")
+    print(colored("-->", 'red'), ab, colored('Responce: ', 'magenta'), bb, end="")
 
 
 main()

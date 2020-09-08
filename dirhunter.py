@@ -24,7 +24,7 @@ def main():
                             a = url + i.rstrip('\n') + x
                             r = requests.get(a)
                             status = str(r.status_code)
-                            if status == '200':
+                            if status == '200' or status == '304':
                                 arrow(a, r, status)
                                 print('\n')        
         else:

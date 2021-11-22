@@ -1,5 +1,5 @@
 # DirHunter:
-## Is a ctf tool that discovers directories in website's
+## Is a directory discovery tool
 
 Wrote in Python3
 Moduls Used: `sys,argparse,requests,termcolor`

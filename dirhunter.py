@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import os
+import sys
 import requests
 import argparse
 from termcolor import colored
@@ -26,6 +27,7 @@ def main():
 
 
 def discoverer(url, wlist, cert, codes, exten):
+    num_tr = 0
     s = requests.Session()
     lch = s.get(url, verify=cert)
     print('Url: ', url)
@@ -39,6 +41,9 @@ def discoverer(url, wlist, cert, codes, exten):
                             a = url + i.rstrip('\n') + x
                             r = s.get(a)
                             status = str(r.status_code)
+                            num_tr += 1
+                            sys.stdout.write("\rTry: " + str(num_tr))
+                            sys.stdout.flush()
                             if status in codes:
                                 arrow(a, status) # r       
         else:
@@ -46,8 +51,6 @@ def discoverer(url, wlist, cert, codes, exten):
             
     else:
         print("Host Not Responding Check the Url")    
-
-
 
 
 def art():
@@ -64,7 +67,7 @@ def art():
     
 def arrow(ab, bb):
 
-    print(colored("-->", 'red'), ab, colored('Responce: ', 'magenta'), bb, end="")
+    print(colored("-->", 'red'), ab, colored('Responce: ', 'magenta'), bb, "\n" ,end="")
 
 
 main()

@@ -70,4 +70,5 @@ def arrow(ab, bb):
     print(colored("-->", 'red'), ab, colored('Responce: ', 'magenta'), bb, "\n" ,end="")
 
 
-main()
+if __name == "__main__":
+    main()

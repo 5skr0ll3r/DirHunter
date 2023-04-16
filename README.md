@@ -71,6 +71,17 @@ Killing all running threads...
 =============================
 ```
 
+```
+charalamposrentoumis@CharalapossAir2 DirHunter % ./dirhunter.sh -h google.com -f directory-list-2.3-medium.txt -sl
+File Located
+=============================
+-> http://google.com/index.html
+-> http://google.com/images
+^C
+Killing all running threads...
+=============================
+```
+
 Clone: `git clone https://github.com/5skr0ll3r/DirHunter`
 
 Or just copy the code

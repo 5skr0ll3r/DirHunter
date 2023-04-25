@@ -2,7 +2,7 @@
 #MIT License at the bottom
 
 {
-extensions=('' ".html" ".css" ".js" ".txt" ".php" ".py" ".xml")
+extensions=('' '/' ".html" ".css" ".js" ".txt" ".php" ".py" ".xml")
 ping_check=true
 logo=true
 threads=20

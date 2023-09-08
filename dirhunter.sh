@@ -2,12 +2,16 @@
 #MIT License at the bottom
 
 {
-extensions=('' '/' ".html" ".css" ".js" ".txt" ".php" ".py" ".xml")
+extensions=('' '/' ".html" ".css" ".js" ".txt" ".php" ".py" ".xml" ".bak")
+extransions=(".bak")
 ping_check=true
 logo=true
+extra=false
+authenticate=false
 threads=20
 
-while getopts "h:f:p:sl" opt; do
+
+while getopts "h:f:p:b:a:sle" opt; do
   case $opt in
 	h) host="$OPTARG"
 	;;
@@ -15,9 +19,15 @@ while getopts "h:f:p:sl" opt; do
 	;;
 	p) threads="$OPTARG"
 	;;
+	b) auth_token="$OPTARG"
+	;;
+	a) credentials="$OPTARG" #Format(username:pasword)
+	;;
 	s) ping_check=false
 	;;
 	l) logo=false
+	;;
+	e) extra=true
 	;;
 	\?) 
 		echo "Invalid option -$OPTARG" >&2
@@ -104,6 +114,19 @@ stop_threads() {
 trap 'stop_threads' SIGINT
 
 
+
+if [ ! -z "$auth_token" ]
+then
+	token="$auth_token"
+	authenticate=true
+fi
+
+if [ ! -z "$credentials" ]
+then
+	token=`echo -ne $credentials | base64`
+	authenticate=true
+fi
+
 #Claculates the number of lines each thread will read
 lines=`wc -l $file | awk -F ' ' '{ print "",$1 }'`
 each_thread=$((lines / threads))
@@ -127,7 +150,12 @@ do
 				extension=`echo "$ex" | tr -d "\r\n "`
 				#Remove return-carieges and new-lines from target 
 				target=`echo "$prefix://$host/$current_line$extension" | tr -d "\r\n "`
-				page_nexists=`curl -I --silent "$target" 2>&1 | grep 404` 
+				if [ authenticate ]
+				then
+					page_nexists=`curl -I --silent -H "Authorization: Basic $token" "$target" 2>&1 | grep 404` 
+				else
+					page_nexists=`curl -I --silent "$target" 2>&1 | grep 404` 
+				fi
 				if [ -z "$page_nexists" ]
 				then
 					echo -e "\033[31m-> \033[35m$prefix://$host\033[0m\033[32m/$current_line$extension\033[0m" | tr -d "\r"

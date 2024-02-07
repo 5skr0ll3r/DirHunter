@@ -152,9 +152,9 @@ do
 				target=`echo "$prefix://$host/$current_line$extension" | tr -d "\r\n "`
 				if [ authenticate ]
 				then
-					page_nexists=`curl -I --silent -H "Authorization: Basic $token" "$target" 2>&1 | grep 404` 
+					page_nexists=`curl -I --silent -H "Authorization: Basic $token" "$target" 2>&1 | grep 404` #TODO: change 404 to match others too like redirections cause if not 404 we get false positives
 				else
-					page_nexists=`curl -I --silent "$target" 2>&1 | grep 404` 
+					page_nexists=`curl -I --silent "$target" 2>&1 | grep 404`  #TODO: change 404 to match others too like redirections cause if not 404 we get false positives
 				fi
 				if [ -z "$page_nexists" ]
 				then

@@ -1,7 +1,7 @@
 # DirHunter:
 ## Is a directory discovery tool
 
-Wrote in Bash
+Written in Bash
 
 ```
 =====================================================================================
